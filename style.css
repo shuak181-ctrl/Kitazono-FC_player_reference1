@@ -567,4 +567,33 @@ body {
   .carousel-slide img {
     height: 300px; 
   }
+  .player-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* スマホでのモーダル写真の高さ */
+  .carousel-slide img {
+    height: 300px;
+  }
+
+  /* --- ソートボタンの1行収め調整 --- */
+  .sort-section {
+    padding: 0 15px 15px; /* 左右の余白を少し詰める */
+  }
+
+  .sort-label {
+    font-size: 12px;
+    margin-bottom: 2px;
+  }
+
+  .sort-group {
+    gap: 10px;            /* ボタン同士の隙間を狭くする */
+    flex-wrap: nowrap;    /* 絶対に改行させない */
+    margin-bottom: 8px;
+  }
+
+  .sort-btn {
+    font-size: 15px !important; /* PC版の40pxから15pxへ大幅縮小 */
+    padding: 2px 0 !important;
+  }
 }
