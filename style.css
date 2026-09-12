@@ -601,7 +601,7 @@ body {
   /* 1. 選手カード全体の縦長感を完全に強制解除してコンパクトにする */
   #player-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* スマホでは綺麗に2列に並べる */
+    grid-template-columns: repeat(1, 1fr); /* スマホでは綺麗に2列に並べる */
     gap: 10px;
     padding: 10px;
   }
