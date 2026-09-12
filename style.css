@@ -594,42 +594,44 @@ body {
 }
 
 /* ==========================================
-   スマホ専用・強制レイアウト補正（文字はみ出し・縦長対策）
+   スマホ専用・1列レイアウト＆すっきり文字調整
    ========================================== */
 @media screen and (max-width: 768px) {
 
-  /* 1. 選手カード全体の縦長感を完全に強制解除してコンパクトにする */
+  /* 1. スマホでは「1列（縦並び）」に変更して横幅を広く使う */
   #player-grid {
     display: grid;
-    grid-template-columns: repeat(1, 1fr); /* スマホでは綺麗に2列に並べる */
-    gap: 10px;
+    grid-template-columns: 1fr; /* ここを1列に変更！ */
+    gap: 12px;
     padding: 10px;
   }
 
-  /* JSで付くかもしれない固定高さを無視して、スマホ用の高さに強制上書き */
+  /* 2. カード全体の形を整える */
   .player-card {
     height: auto !important;
     min-height: unset !important;
-    max-height: 220px !important; /* カード全体の高さを低く抑える */
+    max-height: none !important; /* 高さに制限をなくしてゆったり見せる */
     display: flex !important;
-    flex-direction: column !important;
-    overflow: hidden !important;
+    flex-direction: row !important; /* 横並び（左に写真、右に文字）にするとさらにスマホでスッキリします */
+    align-items: center;
+    padding: 10px !important;
+    box-sizing: border-box !important;
   }
 
-  /* 2. カード内の写真エリアを縮小する */
+  /* 3. 写真エリアの調整（横並びにする場合の例） */
   .player-card img,
   .player-image,
   .player-img-container {
-    height: 120px !important;     /* 写真の高さに上限を設ける */
-    max-height: 120px !important;
-    width: 100% !important;
+    width: 100px !important;     /* 写真の幅を固定 */
+    height: 100px !important;    /* 正方形っぽくスッキリ収める */
     object-fit: cover !important;
+    flex-shrink: 0;
   }
 
-  /* 3. 文字エリアと文字のはみ出しを完全に防ぐ */
-  .player-card .player-info, /* クラス名は実際のJSの構造に合わせて適宜ですが、中身全体を指定 */
+  /* 4. 文字エリアのゆとりと文字サイズ */
+  .player-card .player-info, 
   .player-card div:not(.player-img-container) {
-    padding: 4px 6px !important;
+    padding: 0 0 0 12px !important;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -637,10 +639,11 @@ body {
   }
 
   .player-name {
-    font-size: 12px !important;    /* 文字を小さくして絶対に枠から溢れさせない */
+    font-size: 13px !important;    /* 1列になって横幅が広がったので、少し読みやすい大きさに戻す */
+    line-height: 1.2 !important;
     white-space: nowrap !important;
     overflow: hidden !important;
-    text-overflow: ellipsis !important; /* 長い場合は「…」で省略する */
+    text-overflow: ellipsis !important;
     width: 100% !important;
   }
 
@@ -648,28 +651,6 @@ body {
   .player-position,
   .player-grade {
     font-size: 10px !important;
-  }
-}
-/* ==========================================
-   スマホ版・文字サイズをさらに小さくしてスッキリさせる調整
-   ========================================== */
-@media screen and (max-width: 768px) {
-
-  /* 選手名の文字をさらに小さく（ゆとりを持たせる） */
-  .player-name {
-    font-size: 10px !important;
-    line-height: 1.1 !important;
-  }
-
-  /* 背番号・ポジション・学年などのサブ情報も小さくする */
-  .player-number,
-  .player-position,
-  .player-grade {
-    font-size: 8px !important;
-  }
-
-  /* カード全体の余白を調整してパツパツ感をなくす */
-  .player-card {
-    padding: 8px 4px !important;
+    margin-top: 2px;
   }
 }
