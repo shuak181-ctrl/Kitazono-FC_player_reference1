@@ -594,71 +594,54 @@ body {
 }
 
 /* ==========================================
-   スマホ（画面幅 768px以下）用の自動調整
+   スマホ（画面幅 768px以下）での最適化設定
    ========================================== */
 @media screen and (max-width: 768px) {
-  
-  /* 1. ヘッダーのチーム名をスマホサイズに縮小して1行に収める */
-  .banner-team-name {
-    font-size: 22px !important; /* スマホでは少し小さく調整 */
-    letter-spacing: 1px;
+
+  /* 1. ソート・絞り込みボタン（Sorted by周り）の文字と大きさをスッキリさせる */
+  .sort-section {
+    padding: 0 10px;
   }
 
-  .banner-logo {
-    width: 45px;
-    height: 45px;
-  }
-
-  /* 2. 集合写真の高さをスマホの縦長画面に合わせてスッキリさせる */
-  .group-slide img {
-    max-height: 320px; /* スマホでは高さを抑えて見やすくする */
-  }
-
-  /* 3. スマホでは矢印ボタンを少し小さく、または隠す（スワイプできるのでなくてもOK） */
-  .group-btn {
-    width: 24px;
-    height: 45px;
+  .sort-label {
     font-size: 12px;
-  }
-  
-  .group-prev {
-    left: 8px;
-  }
-  
-  .group-next {
-    right: 8px;
-  }
-}
-/* 1. ソーティング（並び替えボタン・文字）をスッキリ小さくする */
-  .sort-container, /* ソート部分全体のクラス名（適宜調整してください） */
-  .sort-btn, 
-  .filter-btn {
-    font-size: 13px !important;
-    padding: 6px 12px !important;
+    margin-bottom: 5px;
   }
 
-  /* 2. 選手カード全体の縦長感を抑え、パソコン版の比率に近づける */
+  .sort-group {
+    gap: 4px; /* ボタン同士の隙間を狭くする */
+    margin-bottom: 8px;
+  }
+
+  .sort-btn {
+    font-size: 12px !important;
+    padding: 5px 8px !important;
+    border-radius: 4px;
+  }
+
+  /* 2. 選手カードの縦長感を抑え、パソコン版の綺麗な比率に近づける */
   .player-card {
-    height: auto !important;       /* 高さが自動で伸びてしまうのを防ぐ */
-    aspect-ratio: 3 / 4;           /* パソコン版のような綺麗な長方形比率を維持する（※必要に応じて 4/5 などに変更可） */
-    max-height: 280px;             /* スマホで縦長になりすぎないように最大高さを制限 */
+    height: auto !important;
+    aspect-ratio: 3 / 4;          /* 縦に伸びすぎないように長方形の比率をキープ */
+    max-height: 290px;            /* 高さに上限を持たせる */
   }
 
-  /* 3. カード内の写真（画像）の縦長を調整 */
-  .player-card img,
-  .player-img-container {
-    height: 65% !important;        /* 写真エリアの割合を調整 */
+  /* 3. カード内の写真の高さ調整 */
+  .player-card img, 
+  .player-image {
+    height: 62% !important;       /* 写真エリアの割合を調整 */
     object-fit: cover;
   }
 
-  /* 4. 選手カードの名前や背番号の文字を小さくする */
+  /* 4. カード内の文字（名前や背番号など）が大きすぎて崩れるのを防ぐ */
   .player-name {
-    font-size: 14px !important;    /* 文字が大きすぎて２行に溢れるのを防ぐ */
+    font-size: 13px !important;   /* 名前の文字をスマホ用に少し縮小 */
     line-height: 1.2;
   }
 
   .player-number,
-  .player-position {
+  .player-position,
+  .player-grade {
     font-size: 11px !important;
   }
 }
