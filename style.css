@@ -650,3 +650,26 @@ body {
     font-size: 10px !important;
   }
 }
+/* ==========================================
+   スマホ版・文字サイズをさらに小さくしてスッキリさせる調整
+   ========================================== */
+@media screen and (max-width: 768px) {
+
+  /* 選手名の文字をさらに小さく（ゆとりを持たせる） */
+  .player-name {
+    font-size: 10px !important;
+    line-height: 1.1 !important;
+  }
+
+  /* 背番号・ポジション・学年などのサブ情報も小さくする */
+  .player-number,
+  .player-position,
+  .player-grade {
+    font-size: 8px !important;
+  }
+
+  /* カード全体の余白を調整してパツパツ感をなくす */
+  .player-card {
+    padding: 8px 4px !important;
+  }
+}
