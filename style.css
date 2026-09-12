@@ -594,54 +594,59 @@ body {
 }
 
 /* ==========================================
-   スマホ（画面幅 768px以下）での最適化設定
+   スマホ専用・強制レイアウト補正（文字はみ出し・縦長対策）
    ========================================== */
 @media screen and (max-width: 768px) {
 
-  /* 1. ソート・絞り込みボタン（Sorted by周り）の文字と大きさをスッキリさせる */
-  .sort-section {
-    padding: 0 10px;
+  /* 1. 選手カード全体の縦長感を完全に強制解除してコンパクトにする */
+  #player-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* スマホでは綺麗に2列に並べる */
+    gap: 10px;
+    padding: 10px;
   }
 
-  .sort-label {
-    font-size: 12px;
-    margin-bottom: 5px;
-  }
-
-  .sort-group {
-    gap: 4px; /* ボタン同士の隙間を狭くする */
-    margin-bottom: 8px;
-  }
-
-  .sort-btn {
-    font-size: 12px !important;
-    padding: 5px 8px !important;
-    border-radius: 4px;
-  }
-
-  /* 2. 選手カードの縦長感を抑え、パソコン版の綺麗な比率に近づける */
+  /* JSで付くかもしれない固定高さを無視して、スマホ用の高さに強制上書き */
   .player-card {
     height: auto !important;
-    aspect-ratio: 3 / 4;          /* 縦に伸びすぎないように長方形の比率をキープ */
-    max-height: 290px;            /* 高さに上限を持たせる */
+    min-height: unset !important;
+    max-height: 220px !important; /* カード全体の高さを低く抑える */
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
   }
 
-  /* 3. カード内の写真の高さ調整 */
-  .player-card img, 
-  .player-image {
-    height: 62% !important;       /* 写真エリアの割合を調整 */
-    object-fit: cover;
+  /* 2. カード内の写真エリアを縮小する */
+  .player-card img,
+  .player-image,
+  .player-img-container {
+    height: 120px !important;     /* 写真の高さに上限を設ける */
+    max-height: 120px !important;
+    width: 100% !important;
+    object-fit: cover !important;
   }
 
-  /* 4. カード内の文字（名前や背番号など）が大きすぎて崩れるのを防ぐ */
+  /* 3. 文字エリアと文字のはみ出しを完全に防ぐ */
+  .player-card .player-info, /* クラス名は実際のJSの構造に合わせて適宜ですが、中身全体を指定 */
+  .player-card div:not(.player-img-container) {
+    padding: 4px 6px !important;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
   .player-name {
-    font-size: 13px !important;   /* 名前の文字をスマホ用に少し縮小 */
-    line-height: 1.2;
+    font-size: 12px !important;    /* 文字を小さくして絶対に枠から溢れさせない */
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important; /* 長い場合は「…」で省略する */
+    width: 100% !important;
   }
 
   .player-number,
   .player-position,
   .player-grade {
-    font-size: 11px !important;
+    font-size: 10px !important;
   }
 }
