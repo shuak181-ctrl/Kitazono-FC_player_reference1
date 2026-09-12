@@ -79,7 +79,7 @@ const players = [
       "images/matsuzawa10.JPG",     // 1枚目：プロフィール写真
       "images/matsuzawa2.JPG",     // 2枚目：プレイ中の写真
       "images/matsuzawa.JPG",
-      "images/matsuzawa5.jpg"      // 3枚目：シュート瞬間の写真
+      "images/matsuzawa5.JPG"      // 3枚目：シュート瞬間の写真
     ],
     height: "172 cm",
     weight: "58 kg",
