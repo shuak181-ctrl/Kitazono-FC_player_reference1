@@ -555,6 +555,11 @@ body {
    スマホ専用設定（画面幅 768px以下）
    ========================================== */
 @media screen and (max-width: 768px) {
+  /* --- ヘッダーのチーム名を1行に収める調整 --- */
+  .banner-team-name {
+    font-size: 15px !important; /* スマホ用に文字サイズを小さく（お好みで14px〜18pxで微調整可） */
+    white-space: nowrap;       /* 万が一文字数が長くなっても絶対改行させない */
+  }
   /* スマホでは選手カードを「1列」にする */
   .player-grid {
     grid-template-columns: 1fr !important;
