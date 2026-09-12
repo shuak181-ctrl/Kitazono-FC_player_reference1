@@ -1,0 +1,631 @@
+@charset "UTF-8";
+
+/* 全体の設定 */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Oswald", "Helvetica Neue", Arial, "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  background-color: #111111;
+  color: #1A1A1A;
+}
+
+/* 1. バナー全体のコンテナ */
+/* 画面幅めい一杯に広がる独立したヘッダー */
+.top-banner {
+  width: 100%;
+  background-color: #1b1b1b; /* 本体の #111111 とは少し変えた独立感のある色（例: #1b1b1b やお好みのカラー） */
+  padding: 10px 10px;          /* 画面端から少し内側にロゴが来るような左右の余白（お好みで調整可能） */
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* ヘッダーの下に少し影を落として独立感を強調 */
+}
+
+/* ヘッダー最下部の赤いアクセントラインを画面端から端まで通す場合 */
+.top-banner::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background-color: #ff0505;
+}
+
+/* ロゴとチーム名の左側の余白調整（必要に応じて） */
+.banner-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* ロゴのサイズ */
+.banner-logo {
+  width: 60px;  /* 横並びにするので、少しコンパクト（60px〜80px前後）にするのがバランス良いです */
+  height: 60px;
+  display: block;
+  object-fit: contain;
+}
+
+/* チーム名のスタイル */
+.banner-team-name {
+  font-family: 'Tourney', sans-serif; /* Oswaldを適用 */
+  font-size: 24px;                  /* 文字の大きさはお好みで調整してください */
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #f5f5f5;
+}
+.banner-team-name {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 2. 集合写真 */
+.group-photo-container {
+  max-width: 1000px;
+  margin: 0 auto 20px;
+  padding: 0 20px;
+}
+
+.group-photo {
+  width: 100%;
+  height: auto;
+  max-height: 450px; /* 高くなりすぎるのを防ぎたい場合 */
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+}
+/* 集合写真カルーセルの全体枠 */
+/* 1. 集合写真カルーセルの全体枠（画面幅めい一杯にする） */
+.group-carousel-container {
+  width: 100%;
+  max-width: none;
+  margin: 5px 0 10px 0; /* 上下の余白のみ調整 */
+  padding: 0;
+  position: relative;
+}
+
+/* 2. 集合写真の最下部の赤ライン（画面の端から端まで通す） */
+.group-carousel-container::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background-color: #ff0505;
+  border-radius: 0;
+  z-index: 12; /* ドットやボタンより手前に表示 */
+}
+
+/* 3. スクロールするトラック（端まで広げるため角丸を解除） */
+.group-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  border-radius: 0;
+  scroll-behavior: smooth;
+}
+
+.group-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* 各スライド */
+.group-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  scroll-snap-align: start;
+}
+
+.group-slide img {
+  width: 100%;
+  height: auto;
+  max-height: 500px; /* フルワイド化に合わせて少し迫力が出る高さに調整してもOKです */
+  object-fit: cover;
+  display: block;
+  border-radius: 0;
+}
+
+/* 4. 左右の矢印ボタン（画面端から少し内側に配置） */
+.group-btn {
+  position: absolute;
+  top: calc(50% - 15px);
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  border: none;
+  width: 28px;
+  height: 60px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 13;
+  transition: background 0.3s, opacity 0.3s;
+  opacity: 0.7;
+}
+
+.group-btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 1;
+}
+
+.group-prev {
+  left: 15px; /* 画面左端からの距離 */
+}
+
+.group-next {
+  right: 15px; /* 画面右端からの距離 */
+}
+
+.group-btn.hidden-btn {
+  display: none !important;
+}
+
+/* 5. 下部の丸いドット（インジケーター：写真の上に重ねて綺麗に配置） */
+.group-dots {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  z-index: 13;
+}
+
+.group-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  transition: background 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+
+.group-dot.active {
+  background: #FFFFFF;
+  transform: scale(1.2);
+}
+
+/* 3. タイトル（Players and Staff） */
+.title-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px 20px 20px;
+  text-align: center; /* 左寄せにする場合。中央にしたい場合は center に変更してください */
+}
+
+/* タイトル文字のデザイン（以前のスタイルを流用） */
+.page-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 48px; /* 以前より少しコンパクトにする場合は調整してください */
+  margin: 0;
+  color: #f5f5f5;
+  font-weight: normal;
+  letter-spacing: 1px;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+.page-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #ff0505; /* 赤色アンダーバー */
+}
+
+/* ソートタブ */
+.sort-section {
+  padding: 0 20px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.sort-label {
+  font-family: Tourney;
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 4px;
+}
+.sort-group {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.sort-btn {
+  background: none;
+  border: none;
+  font-family: 'Oswald', sans-serif;
+  font-size: 40px;
+  font-weight: normal;
+  cursor: pointer;
+  padding: 2px 0;
+  color: #f5f5f5;
+}
+.sort-btn.active {
+  border-bottom: 2px solid #E74C3C;
+}
+
+/* 選手一覧グリッド */
+.player-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* スマホは2列 */
+  gap: 15px;
+  padding: 0 20px 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  .player-grid {
+    grid-template-columns: repeat(4, 1fr); /* PCは4列 */
+  }
+}
+
+/* 選手カード */
+.player-card {
+  background-color: #ffffff; /* ← ここが白（#FFFFFF）になっているか確認・変更します */
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 4px; /* もし少し角を丸くしたい場合はここに入れます */
+  overflow: hidden;   /* 写真がはみ出さないようにします */
+  /* ▼ ここからカード最下部の赤線用の設定を追加 */
+  border-bottom: 5px solid #a0a0a0; /* 線の太さ（5px）と色（赤）を指定 */
+}
+
+.player-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.player-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+/* 選手カードの下部テキストエリア */
+.player-info {
+  background-color: #ff0505;
+  padding: 30px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* カード全体としては中央を基準にする */
+}
+
+/* 1行目：背番号と名前の全体枠 */
+.player-info .name-row {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  min-height: 2.0em;
+  height: 100%;
+  width: 180px; /* ←★ここを調整すると、グループ全体の左揃え位置が変わります */
+}
+.player-info .player-number {
+  font-family: 'Oswald', sans-serif;
+  font-weight: normal;
+  color: #ffffff;
+  margin-right: 15px; /* 背番号と名前の間のすきま */
+  text-align: center;
+  width: 40px;        /* 背番号の幅を固定して軸を揃える */
+}
+.player-info .player-name {
+  font-weight: bold;
+  text-align: left;
+}
+
+/* 2行目：ポジションとローマ字の全体枠 */
+.player-info .sub-row {
+  font-size: 12px;
+  color: #ffffff;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  width: 180px; /* ←★1行目と同じ幅にすることで、左端の縦のラインがピタッと揃います */
+}
+
+/* ポジション専用のスタイル */
+.player-info .player-position {
+  font-family: 'Oswald', sans-serif;
+  font-weight: normal;
+  color: #ffffff;
+  margin-right: 15px; /* ポジションとローマ字の間のすきま */
+  text-align: center;
+  width: 40px;        /* ポジション（GK/DFなど）の幅を背番号と合わせることで軸を完璧に揃える */
+}
+
+/* ローマ字専用のスタイル */
+.player-info .player-kana {
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+
+/* モーダル */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  flex-direction: column;
+  min-height: 60px;
+}
+.modal.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.modal-content {
+  background-color: #4A4A4A;
+  color: #FFFFFF;
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: #FFFFFF;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* モーダル内レイアウト（スマホ：縦積み、PC：横並び） */
+.modal-body {
+  display: flex;
+  flex-direction: column;
+}
+.modal-image-area {
+  background-color: #FFFFFF;
+  color: #1A1A1A;
+}
+.modal-image-area img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.modal-text-area {
+  padding: 10px 20px;
+}
+
+/* --- モーダル内画像スライダー --- */
+.carousel-container {
+  position: relative;
+  width: 100%;
+}
+
+.carousel-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; /* Firefox用スクロールバー非表示 */
+  -ms-overflow-style: none; /* IE/Edge用スクロールバー非表示 */
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none; /* Chrome/Safari用スクロールバー非表示 */
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  scroll-snap-align: start;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 280px; /* モーダル写真の高さ */
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* インジケーター全体のエリア */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0;
+  /* 背景を完全に透明にするなら transparent、
+     うっすら暗くして写真と馴染ませるなら rgba(0, 0, 0, 0.3) などにします */
+  background: transparent; 
+}
+
+/* 各ドット（丸） */
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  
+  /* ドット自体は「半透明の黒」または「見やすい色」にして、さらに影をつけます */
+  background: rgba(0, 0, 0, 0.4); 
+  box-shadow: 0 1px 2px rgba(255, 255, 255, 0.5); /* 周りに白い影をつけて浮き立たせる */
+  
+  transition: background 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+
+/* アクティブな丸 */
+.carousel-dot.active {
+  background: rgba(0, 0, 0, 0.85); /* 選択中はしっかり濃い色に */
+  transform: scale(1.2);
+}
+
+/* --- スライダー用 縦長四角ボタン --- */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.4); /* 半透明の黒背景 */
+  color: white;
+  border: none;
+  width: 28px;     /* 横幅をスリムに */
+  height: 60px;    /* 縦長にする */
+  border-radius: 4px; /* 少し角丸の四角形にする */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s, opacity 0.3s;
+  opacity: 0.7;
+}
+
+.carousel-btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 1;
+}
+
+/* 左右の端に配置 */
+.carousel-prev {
+  left: 6px;
+}
+
+.carousel-next {
+  right: 6px;
+}
+
+/* 端っこでボタンを消すためのクラス */
+.carousel-btn.hidden-btn {
+  display: none !important;
+}
+
+/* ホバーしたときに少し濃くする */
+.carousel-btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 1;
+}
+
+/* 左右の位置調整 */
+.carousel-prev {
+  left: 10px;
+}
+
+.carousel-next {
+  right: 10px;
+}
+
+/* ボタンの親要素に位置の基準（relative）を持たせる */
+.carousel-container {
+  position: relative;
+  width: 100%;
+}
+
+/* モーダルの詳細情報（経歴やコメントなど） */
+.modal-text-area dd {
+  white-space: pre-line; /* ←★これを入れておくと、\n の場所で自動的に改行されます！ */
+  margin: 0;
+}
+.modal-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  text-decoration: underline;
+  margin-bottom: 15px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+.profile-item {
+  margin-bottom: 15px;
+  font-size: 12px;
+}
+.profile-item dt {
+  font-family: 'Oswald', sans-serif;
+  font-weight: bold;
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+.profile-item dd {
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* PCサイズのモーダル */
+@media (min-width: 768px) {
+  .modal-body {
+    flex-direction: row;
+  }
+  .modal-image-area {
+    width: 45%;
+  }
+  .modal-text-area {
+    width: 55%;
+  }
+  .modal-title {
+    text-align: left;
+  }
+}
+
+/* ==========================================
+   スマホ（画面幅 768px以下）用の自動調整
+   ========================================== */
+@media screen and (max-width: 768px) {
+  
+  /* 1. ヘッダーのチーム名をスマホサイズに縮小して1行に収める */
+  .banner-team-name {
+    font-size: 22px !important; /* スマホでは少し小さく調整 */
+    letter-spacing: 1px;
+  }
+
+  .banner-logo {
+    width: 45px;
+    height: 45px;
+  }
+
+  /* 2. 集合写真の高さをスマホの縦長画面に合わせてスッキリさせる */
+  .group-slide img {
+    max-height: 320px; /* スマホでは高さを抑えて見やすくする */
+  }
+
+  /* 3. スマホでは矢印ボタンを少し小さく、または隠す（スワイプできるのでなくてもOK） */
+  .group-btn {
+    width: 24px;
+    height: 45px;
+    font-size: 12px;
+  }
+  
+  .group-prev {
+    left: 8px;
+  }
+  
+  .group-next {
+    right: 8px;
+  }
+}
