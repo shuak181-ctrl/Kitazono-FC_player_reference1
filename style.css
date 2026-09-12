@@ -558,7 +558,7 @@ body {
   /* スマホでは選手カードを「1列」にする */
   .player-grid {
     grid-template-columns: 1fr !important;
-    max-width: 340px !important; /* ← 幅を340px〜360px前後に制限して一回り小さくする */
+    max-width: 300px !important; /* ← 幅を340px〜360px前後に制限して一回り小さくする */
     margin: 0 auto !important;   /* 中央寄せ */
   }
   /* カード内の写真の高さを自動にして縦横比を完全維持 */
@@ -575,7 +575,7 @@ body {
   }
   /* スマホでの集合写真の高さ（高くなりすぎるのを防ぐ） */
   .group-slide img {
-    max-height: 240px;
+    max-height: 210px;
   }
 
   /* スマホでのモーダル写真の高さ */
