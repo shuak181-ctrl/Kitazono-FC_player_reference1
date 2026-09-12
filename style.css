@@ -580,12 +580,12 @@ body {
   }
   /* スマホでの集合写真の高さ（高くなりすぎるのを防ぐ） */
   .group-slide img {
-    max-height: 210px;
+    max-height: 190px;
   }
 
   /* スマホでのモーダル写真の高さ */
   .carousel-slide img {
-    height: 370px;
+    height: 400px;
   }
 
   /* --- ソートボタンの1行収め調整 --- */
