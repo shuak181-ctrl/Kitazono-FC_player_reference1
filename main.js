@@ -628,7 +628,7 @@ const players = [
     ],
     height: "-",
     weight: "-",
-    history: "",
+    history: "-",
     comment: "選手たちが全力でプレーできるようにサポートします！"
   },
   {
@@ -648,7 +648,7 @@ const players = [
     ],
     height: "-",
     weight: "-",
-    history: "",
+    history: "-",
     comment: "マネージャーとして選手たちのサポートをできるように頑張ります！"
   },
   {
@@ -668,7 +668,7 @@ const players = [
     ],
     height: "-",
     weight: "-",
-    history: "",
+    history: "-",
     comment: "選手のみんなが最高のプレーをできるように、これからも全力でサポートしていきます！"
   },
   {
@@ -688,7 +688,7 @@ const players = [
     ],
     height: "-",
     weight: "-",
-    history: "",
+    history: "-",
     comment: "ワールドカップ見てサッカーを好きになりました！\nみんなのことをサポートします！"
   },
   {
@@ -708,7 +708,7 @@ const players = [
     ],
     height: "-",
     weight: "-",
-    history: "",
+    history: "-",
     comment: "選手のみんなの支えとなるよう懸命に頑張ります！"
   },
   {
@@ -728,7 +728,7 @@ const players = [
     ],
     height: "-",
     weight: "-",
-    history: "",
+    history: "-",
     comment: "選手のみんなのサポートを精一杯頑張ります！"
   },
   {
