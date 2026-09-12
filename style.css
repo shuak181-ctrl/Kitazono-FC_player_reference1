@@ -570,10 +570,14 @@ body {
   .player-grid {
     grid-template-columns: 1fr !important;
   }
+  /* スマホでの集合写真の高さ（高くなりすぎるのを防ぐ） */
+  .group-slide img {
+    max-height: 240px;
+  }
 
   /* スマホでのモーダル写真の高さ */
   .carousel-slide img {
-    height: 300px;
+    height: 370px;
   }
 
   /* --- ソートボタンの1行収め調整 --- */
