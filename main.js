@@ -744,9 +744,9 @@ const players = [
       "images/tsunemi2.JPG",
       "images/tsunemi3.JPG"
     ],
-    height: "", 
-    weight: "",
-    history: "",
+    height: "-", 
+    weight: "-",
+    history: "-",
     comment: "準備中"
   },
   {
@@ -762,9 +762,9 @@ const players = [
       "images/hayakawa2.JPG",
       "images/hayakawa3.JPG"
     ],
-    height: "",
-    weight: "",
-    history: "",
+    height: "-",
+    weight: "-",
+    history: "-",
     comment: "準備中"
   },
   {
