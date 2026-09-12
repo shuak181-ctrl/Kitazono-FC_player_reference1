@@ -629,3 +629,36 @@ body {
     right: 8px;
   }
 }
+/* 1. ソーティング（並び替えボタン・文字）をスッキリ小さくする */
+  .sort-container, /* ソート部分全体のクラス名（適宜調整してください） */
+  .sort-btn, 
+  .filter-btn {
+    font-size: 13px !important;
+    padding: 6px 12px !important;
+  }
+
+  /* 2. 選手カード全体の縦長感を抑え、パソコン版の比率に近づける */
+  .player-card {
+    height: auto !important;       /* 高さが自動で伸びてしまうのを防ぐ */
+    aspect-ratio: 3 / 4;           /* パソコン版のような綺麗な長方形比率を維持する（※必要に応じて 4/5 などに変更可） */
+    max-height: 280px;             /* スマホで縦長になりすぎないように最大高さを制限 */
+  }
+
+  /* 3. カード内の写真（画像）の縦長を調整 */
+  .player-card img,
+  .player-img-container {
+    height: 65% !important;        /* 写真エリアの割合を調整 */
+    object-fit: cover;
+  }
+
+  /* 4. 選手カードの名前や背番号の文字を小さくする */
+  .player-name {
+    font-size: 14px !important;    /* 文字が大きすぎて２行に溢れるのを防ぐ */
+    line-height: 1.2;
+  }
+
+  .player-number,
+  .player-position {
+    font-size: 11px !important;
+  }
+}
