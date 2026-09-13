@@ -571,9 +571,6 @@ body {
     height: auto !important;
     aspect-ratio: 4 / 3; /* 必要に応じて縦横比を固定（例：4:3 または 1/1 など） */
   }
-  /* スマホでのモーダル写真の高さ */
-  .carousel-slide img {
-    height: 300px; 
   }
   .player-grid {
     grid-template-columns: 1fr !important;
