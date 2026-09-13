@@ -569,7 +569,7 @@ body {
   /* カード内の写真の高さを自動にして縦横比を完全維持 */
   .player-card img {
     height: auto !important;
-    aspect-ratio: 4 / 5; /* 必要に応じて縦横比を固定（例：4:3 または 1/1 など） */
+    aspect-ratio: 5 / 6; /* 必要に応じて縦横比を固定（例：4:3 または 1/1 など） */
   }
   }
   .player-grid {
