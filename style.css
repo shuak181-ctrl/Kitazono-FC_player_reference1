@@ -637,8 +637,19 @@ body {
   line-height: 1.4;
 }
 
+/* PC版の集合写真（標準設定：380pxでしっかり表示） */
+.group-slide img {
+  width: 100%;
+  height: auto;
+  max-height: 380px;
+  object-fit: cover;
+  display: block;
+  border-radius: 0;
+}
+
 /* PCサイズのモーダル */
 @media (min-width: 768px) {
+  
   .modal-body {
     flex-direction: row;
   }
