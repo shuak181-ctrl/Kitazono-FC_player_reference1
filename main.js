@@ -238,7 +238,7 @@ const players = [
     number: "15",
     name: "小川 貴幸",
     kana: "OGAWA Takayuki",
-    role: "player (injured)",
+    role: "player",
     position: "MF",
     grade: "2年",
     image: "images/ogawa.jpg", // 仮
