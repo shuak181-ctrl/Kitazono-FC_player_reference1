@@ -1,6 +1,8 @@
 @charset "UTF-8";
 
-/* 全体の設定 */
+/* ==========================================
+   1. 全体基本設定
+   ========================================== */
 body {
   margin: 0;
   padding: 0;
@@ -9,7 +11,9 @@ body {
   color: #1A1A1A;
 }
 
-/* 1. バナー全体のコンテナ */
+/* ==========================================
+   2. ヘッダーバナー
+   ========================================== */
 .top-banner {
   width: 100%;
   background-color: #1b1b1b;
@@ -55,20 +59,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* 2. 集合写真カルーセル */
+/* ==========================================
+   3. 集合写真スライダー（PC標準設定）
+   ========================================== */
 .group-photo-container {
   max-width: 1000px;
   margin: 0 auto 20px;
   padding: 0 20px;
-}
-
-.group-photo {
-  width: 100%;
-  height: auto;
-  max-height: 450px;
-  object-fit: cover;
-  border-radius: 4px;
-  display: block;
 }
 
 .group-carousel-container {
@@ -111,10 +108,11 @@ body {
   scroll-snap-align: start;
 }
 
+/* 集合写真（PC版：しっかり高さを確保） */
 .group-slide img {
   width: 100%;
   height: auto;
-  max-height: 500px;
+  max-height: 380px;
   object-fit: cover;
   display: block;
   border-radius: 0;
@@ -145,17 +143,9 @@ body {
   opacity: 1;
 }
 
-.group-prev {
-  left: 15px;
-}
-
-.group-next {
-  right: 15px;
-}
-
-.group-btn.hidden-btn {
-  display: none !important;
-}
+.group-prev { left: 15px; }
+.group-next { right: 15px; }
+.group-btn.hidden-btn { display: none !important; }
 
 .group-dots {
   position: absolute;
@@ -187,7 +177,9 @@ body {
   transform: scale(1.2);
 }
 
-/* 3. タイトル（Players and Staff） */
+/* ==========================================
+   4. タイトル & ソートセクション（PC標準設定）
+   ========================================== */
 .title-section {
   max-width: 1000px;
   margin: 0 auto;
@@ -217,7 +209,6 @@ body {
   background-color: #ff0505;
 }
 
-/* ソートタブ */
 .sort-section {
   padding: 0 20px 20px;
   max-width: 1000px;
@@ -253,8 +244,9 @@ body {
   border-bottom: 2px solid #E74C3C;
 }
 
-/* 選手一覧グリッド（デフォルト：PCは4列） */
-/* 選手一覧グリッド（PC版デフォルト：4列） */
+/* ==========================================
+   5. 選手一覧グリッド & カード（PC標準設定：4列）
+   ========================================== */
 .player-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -264,7 +256,6 @@ body {
   margin: 0 auto;
 }
 
-/* 選手カード（PC版） */
 .player-card {
   background-color: #ffffff;
   cursor: pointer;
@@ -286,108 +277,6 @@ body {
   display: block;
 }
 
-/* ソートボタン（PC版デフォルト：40px） */
-.sort-btn {
-  background: none;
-  border: none;
-  font-family: 'Oswald', sans-serif;
-  font-size: 40px;
-  font-weight: normal;
-  cursor: pointer;
-  padding: 2px 0;
-  color: #f5f5f5;
-}
-
-.sort-btn.active {
-  border-bottom: 2px solid #E74C3C;
-}
-
-
-/* ==========================================
-   スマホ専用設定（画面幅 768px以下のみに適用）
-   ========================================== */
-@media screen and (max-width: 768px) {
-
-  /* ヘッダーチーム名 */
-  .banner-team-name {
-    font-size: 16px !important;
-    white-space: nowrap;
-  }
-
-  .banner-logo {
-    width: 45px !important;
-    height: 45px !important;
-  }
-
-  /* スマホ版選手グリッド（1列） */
-  .player-grid {
-    grid-template-columns: 1fr !important;
-    max-width: 340px !important;
-    margin: 0 auto !important;
-  }
-
-  /* 選手カード画像 */
-  .player-card img {
-    width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 1 / 1;
-    object-fit: cover !important;
-  }
-
-  /* 集合写真・モーダル写真 */
-  .group-slide img {
-    max-height: 240px;
-  }
-
-  .carousel-slide img {
-    height: 340px;
-  }
-
-  /* スマホ版ソートボタン（15px） */
-  .sort-section {
-    padding: 0 15px 15px;
-  }
-
-  .sort-label {
-    font-size: 12px;
-    margin-bottom: 2px;
-  }
-
-  .sort-group {
-    gap: 10px;
-    flex-wrap: nowrap;
-    margin-bottom: 8px;
-  }
-
-  .sort-btn {
-    font-size: 15px !important;
-    padding: 2px 0 !important;
-  }
-
-} /* ← この閉じカッコにより、ここより上の設定がスマホだけに限定されます */
-/* 選手カード */
-.player-card {
-  background-color: #ffffff;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border-radius: 4px;
-  overflow: hidden;
-  border-bottom: 5px solid #a0a0a0;
-}
-
-.player-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-/* 選手カードの写真の高さを少し伸ばす */
-.player-card img {
-  width: 100%;
-  height: 350px; /* ← 300px から 350px に変更（少し伸ばしてバランス調整） */
-  object-fit: cover;
-  display: block;
-}
-/* 選手カードの下部テキストエリア */
 .player-info {
   background-color: #ff0505;
   padding: 30px 10px;
@@ -447,7 +336,9 @@ body {
   text-align: left;
 }
 
-/* モーダル */
+/* ==========================================
+   6. モーダル（PC標準設定）
+   ========================================== */
 .modal {
   position: fixed;
   top: 0;
@@ -502,17 +393,10 @@ body {
   color: #1A1A1A;
 }
 
-.modal-image-area img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
 .modal-text-area {
   padding: 10px 20px;
 }
 
-/* --- モーダル内画像スライダー --- */
 .carousel-container {
   position: relative;
   width: 100%;
@@ -536,10 +420,9 @@ body {
   scroll-snap-align: start;
 }
 
-/* モーダル内の写真の高さを拡大 */
 .carousel-slide img {
   width: 100%;
-  height: 340px; /* ← 280px から 340px に変更 */
+  height: 340px;
   object-fit: cover;
   object-position: center top;
   display: block;
@@ -594,17 +477,9 @@ body {
   opacity: 1;
 }
 
-.carousel-prev {
-  left: 10px;
-}
-
-.carousel-next {
-  right: 10px;
-}
-
-.carousel-btn.hidden-btn {
-  display: none !important;
-}
+.carousel-prev { left: 10px; }
+.carousel-next { right: 10px; }
+.carousel-btn.hidden-btn { display: none !important; }
 
 .modal-text-area dd {
   white-space: pre-line;
@@ -637,19 +512,8 @@ body {
   line-height: 1.4;
 }
 
-/* PC版の集合写真（標準設定：380pxでしっかり表示） */
-.group-slide img {
-  width: 100%;
-  height: auto;
-  max-height: 380px;
-  object-fit: cover;
-  display: block;
-  border-radius: 0;
-}
-
-/* PCサイズのモーダル */
+/* モーダルのPC版レイアウト */
 @media (min-width: 768px) {
-  
   .modal-body {
     flex-direction: row;
   }
@@ -665,42 +529,48 @@ body {
 }
 
 /* ==========================================
-   スマホ専用設定（画面幅 768px以下）
+   7. スマホ専用設定（画面幅 768px以下のみに適用）
    ========================================== */
 @media screen and (max-width: 768px) {
-  /* --- ヘッダーのチーム名を1行に収める調整 --- */
+
+  /* ヘッダーチーム名 & ロゴ */
   .banner-team-name {
-    font-size: 15px !important; /* スマホ用に文字サイズを小さく（お好みで14px〜18pxで微調整可） */
-    white-space: nowrap;       /* 万が一文字数が長くなっても絶対改行させない */
+    font-size: 15px !important;
+    white-space: nowrap;
   }
-  /* スマホでは選手カードを「1列」にする */
+
+  .banner-logo {
+    width: 45px !important;
+    height: 45px !important;
+  }
+
+  /* 集合写真（スマホ版：190px） */
+  .group-slide img {
+    max-height: 190px !important;
+  }
+
+  /* 選手カードグリッド（スマホ版：1列・最大幅300px） */
   .player-grid {
     grid-template-columns: 1fr !important;
-    max-width: 300px !important; /* ← 幅を340px〜360px前後に制限して一回り小さくする */
-    margin: 0 auto !important;   /* 中央寄せ */
+    max-width: 300px !important;
+    margin: 0 auto !important;
   }
-  /* カード内の写真の高さを自動にして縦横比を完全維持 */
+
+  /* 選手カード画像（スマホ版：縦横比 5:6） */
   .player-card img {
     height: auto !important;
-    aspect-ratio: 5 / 6; /* 必要に応じて縦横比を固定（例：4:3 または 1/1 など） */
-  }
-  }
-  .player-grid {
-    grid-template-columns: 1fr !important;
-  }
-  /* スマホでの集合写真の高さ（高くなりすぎるのを防ぐ） */
-  .group-slide img {
-    max-height: 190px;
+    aspect-ratio: 5 / 6;
+    object-fit: cover !important;
   }
 
-  /* スマホでのモーダル写真の高さ */
+  /* モーダル写真 */
   .carousel-slide img {
-    height: 400px;
+    height: 400px !important;
   }
 
-  /* --- ソートボタンの1行収め調整 --- */
+  /* ソートボタン（スマホ版：15px） */
   .sort-section {
-    padding: 0 15px 15px; /* 左右の余白を少し詰める */
+    padding: 0 15px 15px;
   }
 
   .sort-label {
@@ -709,13 +579,14 @@ body {
   }
 
   .sort-group {
-    gap: 10px;            /* ボタン同士の隙間を狭くする */
-    flex-wrap: nowrap;    /* 絶対に改行させない */
+    gap: 10px;
+    flex-wrap: nowrap;
     margin-bottom: 8px;
   }
 
   .sort-btn {
-    font-size: 15px !important; /* PC版の40pxから15pxへ大幅縮小 */
+    font-size: 15px !important;
     padding: 2px 0 !important;
   }
-}
+
+} /* ← スマホ用レスポンシブブロックの正しい閉じカッコ */
