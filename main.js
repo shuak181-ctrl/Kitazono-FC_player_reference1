@@ -1137,3 +1137,84 @@ if (groupTrack) {
     });
   });
 }
+// 取得したブログ記事データを保持する配列
+let currentBlogPosts = [];
+
+// ブログ記事一覧を取得して表示する関数
+async function fetchBlogPosts() {
+  const blogContainer = document.getElementById('blog-grid');
+  if (!blogContainer) return;
+
+  try {
+    const response = await fetch('posts.json');
+    if (!response.ok) throw new Error('Network response was not ok');
+    
+    currentBlogPosts = await response.json();
+
+    blogContainer.innerHTML = currentBlogPosts.map(post => `
+      <article class="blog-card" onclick="openBlogModal('${post.id}')">
+        <img src="${post.image}" alt="${post.title}">
+        <div class="blog-card-body">
+          <div class="blog-meta">
+            <span class="blog-date">${post.date}</span>
+            <span class="blog-author">${post.author}</span>
+          </div>
+          <h3 class="blog-card-title">${post.title}</h3>
+          <p class="blog-snippet">${post.content}</p>
+        </div>
+      </article>
+    `).join('');
+
+  } catch (error) {
+    console.error('ブログ記事の取得に失敗しました:', error);
+    blogContainer.innerHTML = '<p style="color:#aaa; text-align:center;">記事を読み込めませんでした。</p>';
+  }
+}
+
+// モーダルを開いて記事全文を表示する関数
+function openBlogModal(id) {
+  const post = currentBlogPosts.find(p => String(p.id) === String(id));
+  if (!post) return;
+
+  const modal = document.getElementById('blog-modal');
+  const modalBody = document.getElementById('blog-modal-body');
+
+  modalBody.innerHTML = `
+    <img class="blog-modal-img" src="${post.image}" alt="${post.title}">
+    <div class="blog-modal-meta">
+      <span>${post.date}</span>
+      <span>${post.author}</span>
+    </div>
+    <h2 class="blog-modal-title">${post.title}</h2>
+    <div class="blog-modal-text">${post.content}</div>
+  `;
+
+  modal.style.display = 'block';
+  document.body.style.overflow = 'hidden'; // モーダル開閉時に背面スクロールを固定
+}
+
+// モーダルを閉じる関数
+function closeBlogModal() {
+  const modal = document.getElementById('blog-modal');
+  if (modal) {
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto'; // 背面スクロールを解除
+  }
+}
+
+// 背景暗がり部分クリック または ESCキー押下で閉じる処理
+window.addEventListener('click', (event) => {
+  const modal = document.getElementById('blog-modal');
+  if (event.target === modal) {
+    closeBlogModal();
+  }
+});
+
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    closeBlogModal();
+  }
+});
+
+// ページ読み込み時に実行
+document.addEventListener('DOMContentLoaded', fetchBlogPosts);
