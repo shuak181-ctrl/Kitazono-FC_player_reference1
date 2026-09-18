@@ -664,6 +664,8 @@ body {
   font-size: 15px;
   line-height: 1.8;
   color: #e0e0e0;
+  white-space: pre-line;
+  line-height: 1.9;
   white-space: pre-wrap; /* 改行コードをそのまま反映 */
 }
 
