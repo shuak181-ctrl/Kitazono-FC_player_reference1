@@ -1160,7 +1160,7 @@ async function fetchBlogPosts() {
             <span class="blog-author">${post.author}</span>
           </div>
           <h3 class="blog-card-title">${post.title}</h3>
-          <p class="blog-snippet">${post.content}</p>
+          <p class="blog-snippet">${post.content.substring(0, 80)}...</p>
         </div>
       </article>
     `).join('');
