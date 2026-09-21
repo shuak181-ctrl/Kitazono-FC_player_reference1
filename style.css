@@ -722,6 +722,7 @@ body {
   /* モーダル写真 */
   .carousel-slide img {
     height: 400px !important;
+    width: 300px;
   }
 
   /* ソートボタン（スマホ版：15px） */
