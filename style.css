@@ -421,7 +421,7 @@ body {
 }
 
 .carousel-slide img {
-  width: 100%;
+  width: 250px;
   height: 340px;
   object-fit: cover;
   object-position: center top;
@@ -722,7 +722,6 @@ body {
   /* モーダル写真 */
   .carousel-slide img {
     height: 400px !important;
-    width: 300px;
   }
 
   /* ソートボタン（スマホ版：15px） */
